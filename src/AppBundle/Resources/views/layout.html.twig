@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}" />
 {% endblock %}
 
 {% block body %}
@@ -12,4 +13,10 @@
         {% block content %}{% endblock %}
     </div>
 
+{% endblock %}
+
+{% block javascript %}
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 {% endblock %}

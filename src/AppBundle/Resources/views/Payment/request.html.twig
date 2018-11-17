@@ -4,8 +4,40 @@
 
 {% block content %}
 
-    <div class="layer square-20">
+    <div class="layer square-40">
+        <section class="left-side-form form background-layout-blue">
 
+            <h1>Payment Request</h1>
+
+            {{ form_start(form) }}
+
+            <fieldset>
+                {{ form_widget(form.firstName, {'attr': {'placeholder': 'Firstname'}}) }}
+
+                {{ form_widget(form.lastName, {'attr': {'placeholder': 'Lastname'}}) }}
+
+                {{ form_widget(form.email, {'attr': {'placeholder': 'Email'}}) }}
+            </fieldset>
+
+            <fieldset>
+                {{ form_widget(form.submit) }}
+            </fieldset>
+
+            {{ form_end(form) }}
+
+        </section>
+
+        <section>
+
+            <header>
+                <img src="img/logo-lydia.png" class="logo"/>
+            </header>
+
+            <p>
+                After submitting the form, you will receive a payment request.
+            </p>
+
+        </section>
     </div>
 
 {% endblock %}
