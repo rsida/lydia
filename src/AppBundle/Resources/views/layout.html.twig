@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Lydia{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+    <div id="container" class="background-blue">
+        {% block content %}{% endblock %}
+    </div>
+
+{% endblock %}
