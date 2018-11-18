@@ -7,30 +7,14 @@
     <div class="layer square-40">
         <section class="left-side-form form background-layout-blue">
 
-            <h1>Payment Request</h1>
-
-            {{ form_start(form) }}
-
-            <fieldset>
-                {{ form_widget(form.firstName, {'attr': {'placeholder': 'Firstname'}}) }}
-
-                {{ form_widget(form.lastName, {'attr': {'placeholder': 'Lastname'}}) }}
-
-                {{ form_widget(form.email, {'attr': {'placeholder': 'Email'}}) }}
-            </fieldset>
-
-            <fieldset>
-                {{ form_widget(form.submit) }}
-            </fieldset>
-
-            {{ form_end(form) }}
+            {% include 'AppBundle:Payment:request.form.html.twig' with {'form': form} %}
 
         </section>
 
         <section>
 
             <header>
-                <img src="img/logo-lydia.png" class="logo"/>
+                <img src="{{ asset('img/logo-lydia.png') }}" class="logo"/>
             </header>
 
             <p>
@@ -40,4 +24,11 @@
         </section>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('js/form.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/form/payment.request.js') }}"></script>
 {% endblock %}
