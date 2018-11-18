@@ -58,7 +58,8 @@ class PaymentController extends Controller
 
         return new JsonResponse([
             'state'   => true,
-            'message' => 'Request has been successfully sent !'
+            'message' => 'Request has been successfully sent !',
+            'data'    => $this->renderView('AppBundle:Payment:success.html.twig'),
         ], JsonResponse::HTTP_CREATED);
     }
 }
