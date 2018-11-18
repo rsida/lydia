@@ -1,9 +1,9 @@
 html, body {
-    padding: 0;
-    margin: 0;
-
     width: 100%;
     height: 100%;
+
+    padding: 0;
+    margin: 0;
 
     font-family: Arial, sans-serif;
     font-size: 1em;
@@ -21,18 +21,21 @@ html, body {
     width: calc(100% - 10px);
 }
 
-.background-stripes {
-    background-image: linear-gradient(135deg, #358dbb 25%, #3889b5 25%, #3889b5 50%, #358dbb 50%, #358dbb 75%, #3889b5 75%, #3889b5 100%);
-    background-size: 84.85px 84.85px;
+.background-blue {
+    background-color: #206AAB;
 }
 
-.background-blue {
-    background-color: #358dbb;
+.background-layout-blue {
+    background-color: #2276bf;
 }
 
 .layer {
     position: absolute;
     top: 50%; left: 50%;
+
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
 
     transform: translate(-50%, -50%);
     -webkit-box-shadow: 0 0 79px -1px rgba(0, 0, 0, 0.33);
@@ -42,7 +45,6 @@ html, body {
     background-color: #fff;
 }
 
-.square-20 {
-    width: 30%;
-    height: 30%;
+.square-40 {
+    width: 40%;
 }

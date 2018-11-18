@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}" />
 {% endblock %}
 
 {% block body %}
@@ -12,4 +13,9 @@
         {% block content %}{% endblock %}
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/notify.min.js') }}"></script>
 {% endblock %}
