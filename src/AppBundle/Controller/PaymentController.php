@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * Class PaymentController
  * @package AppBundle\Controller
+ * @Route("/payment")
  */
 class PaymentController extends Controller
 {
