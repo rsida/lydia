@@ -2,21 +2,22 @@
 
 namespace AdminBundle\Controller;
 
+use CommonBundle\Service\LydiaApi;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Class PaymentController
  * @package AdminBundle\Controller
- * @Route("/admin/payment")
+ * @Route("/payment")
  */
 class PaymentController extends Controller
 {
     /**
-     * @Route("/request")
+     * @Route("/request", name="admin_payment_request")
      */
-    public function indexAction()
+    public function indexAction(LydiaApi $lydiaApi)
     {
-        return $this->render('AdminBundle:Default:index.html.twig');
+        return $this->render('AdminBundle:Payment:Request/list.html.twig');
     }
 }

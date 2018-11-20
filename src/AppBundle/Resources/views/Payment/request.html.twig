@@ -1,10 +1,10 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}{{ parent() ~ 'Payment request' }}{% endblock %}
+{% block title %}{{ parent() }} - Payment request{% endblock %}
 
 {% block content %}
 
-    <span class="layer square-40">
+    <div class="layer square-40">
         <section class="left-side-form form background-layout-blue">
 
             {% include 'AppBundle:Payment:request.form.html.twig' with {'form': form} %}

@@ -15,5 +15,10 @@ parameters:
     mailer_user: ~
     mailer_password: ~
 
+    lydia_host: https://homologation.lydia-app.com
+    lydia_vendor_token: 58385365be57f651843810
+    lydia_private_token: 58385365c0157470110435
+    lydia_user_token: 5bf3128ae8eec038362075
+
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt

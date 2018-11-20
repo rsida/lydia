@@ -4,8 +4,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
+            "CommonBundle\\": "src/CommonBundle",
             "AppBundle\\": "src/AppBundle",
-            "UserBundle\\": "src/UserBundle",
             "AdminBundle\\": "src/AdminBundle"
         },
         "classmap": [

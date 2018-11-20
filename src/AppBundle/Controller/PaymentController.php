@@ -24,7 +24,7 @@ class PaymentController extends Controller
     {
         $form = $this->createForm(PaymentRequestType::class, null, [
             'action' => $this->generateUrl('payment_request_validate'),
-            'method' => Request::METHOD_POST
+            'method' => Request::METHOD_POST,
         ]);
 
         return $this->render('AppBundle:Payment:request.html.twig', [
@@ -44,7 +44,7 @@ class PaymentController extends Controller
     {
         $form = $this->createForm(PaymentRequestType::class, null, [
             'action' => $this->generateUrl('payment_request_validate'),
-            'method' => Request::METHOD_POST
+            'method' => Request::METHOD_POST,
         ]);
         $form->handleRequest($request);
 

@@ -30,7 +30,7 @@ $(function() {
                 errors = JSON.parse(field.attr('data-errors'));
 
             for (let i = 0; i < errors.length; i++) {
-                $(document).notify(field.attr('placeholder') + ': ' + errors[i], 'error');
+                $.notify(field.attr('placeholder') + ': ' + errors[i], 'error');
             }
         });
     });

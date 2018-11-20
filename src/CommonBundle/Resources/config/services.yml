@@ -1,0 +1,11 @@
+services:
+    CommonBundle\Service\RestClient:
+        $baseUri: '%lydia_host%'
+
+    CommonBundle\Service\LydiaApi:
+        $restClient: '@CommonBundle\Service\RestClient'
+        $configuration:
+            vendorToken: '%lydia_vendor_token%'
+            privateToken: '%lydia_private_token%'
+            userToken: '%lydia_user_token%'
+
