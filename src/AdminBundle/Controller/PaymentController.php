@@ -2,7 +2,7 @@
 
 namespace AdminBundle\Controller;
 
-use CommonBundle\Service\LydiaApi;
+use CommonBundle\Repository\PaymentRequestRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -16,8 +16,17 @@ class PaymentController extends Controller
     /**
      * @Route("/request", name="admin_payment_request")
      */
-    public function indexAction(LydiaApi $lydiaApi)
+    public function indexAction()
     {
-        return $this->render('AdminBundle:Payment:Request/list.html.twig');
+        /** @var PaymentRequestRepository $repository */
+        $repository = $this
+            ->getDoctrine()
+            ->getRepository('CommonBundle:PaymentRequest');
+
+        $paymentRequests = $repository->findAll(['createdAt' => 'DESC']);
+
+        return $this->render('AdminBundle:Payment:Request/list.html.twig', [
+            'paymentRequests'=> $paymentRequests,
+        ]);
     }
 }

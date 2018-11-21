@@ -18,4 +18,14 @@
 {% block javascripts %}
     <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/notify.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $(document).on('pushNotification', function (event, notification) {
+                if (notification.hasOwnProperty('message') && notification.hasOwnProperty('type')) {
+                    $.notify(notification.message, notification.type);
+                }
+            });
+        });
+    </script>
 {% endblock %}

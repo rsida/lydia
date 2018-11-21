@@ -10,30 +10,28 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Mobile Url</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Status</th>
             </tr>
             </thead>
             <tbody>
+            {% for paymentRequest in paymentRequests %}
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row">{{ paymentRequest.id }}</th>
+                <td>{{ paymentRequest.firstName }}</td>
+                <td>{{ paymentRequest.lastName }}</td>
+                <td>{{ paymentRequest.recipient }}</td>
+                <td>{{ paymentRequest.amount }}</td>
+                <td>{{ paymentRequest.mobileUrl }}</td>
+                <td>{{ paymentRequest.createdAt | date("d/m/Y H:i:s") }}</td>
+                <td>{{ paymentRequest | paymentCurrentStatus | paymentStatusLabel }}</td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            {% endfor %}
             </tbody>
         </table>
     </main>

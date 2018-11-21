@@ -17,6 +17,13 @@ $(function() {
             if (response.state === false) {
                 $(document).trigger('sendErrorNotificationAjaxFormResponse');
             }
+
+            if (response.notifications) {
+                $.each(response.notifications, function (index, notification) {
+                    $(document).trigger('pushNotification', response.notifications);
+                });
+
+            }
         })
         .always(function () {
             $(document).trigger('loadingEnd');

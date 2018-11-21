@@ -24,7 +24,7 @@ class PaymentRequestType extends AbstractType
         $builder
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
-            ->add('email', EmailType::class)
+            ->add('recipient', EmailType::class)
             ->add('submit', SubmitType::class)
         ;
     }

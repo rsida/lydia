@@ -2,6 +2,8 @@
 
 namespace CommonBundle\Service;
 
+use CommonBundle\Entity\PaymentRequest;
+use CommonBundle\Exception\LydiaApiRequestException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -10,6 +12,8 @@ use Psr\Http\Message\ResponseInterface;
  */
 class LydiaApi
 {
+    const REQUEST_OK = 0;
+
     /** @var RestClient $restClient */
     private $restClient;
     /** @var array $configuration */
@@ -27,22 +31,60 @@ class LydiaApi
         $this->configuration = $configuration;
     }
 
-    public function sendPayment()
+    /**
+     * Send a payment request to Lydia API
+     *
+     * @param PaymentRequest $paymentRequest
+     * @throws LydiaApiRequestException|\RuntimeException
+     */
+    public function sendPayment(PaymentRequest $paymentRequest)
     {
-        $response = $this->restClient->post('/api/auth/register.json', ['form_params' => [
-            'vendor_token'     => $this->configuration['vendorToken'],
-            'amount'           => 'Romain',
-            'currency'         => 'Sida',
-            'recipient'        => 'romain.sida.pro@gmail.com',
-            'signature'        => '0666587089',
-            'expiration_time'  => 'romainsida',
-            'webhook'          => '',
-            'notify_recipient' => '',
-            'order_ref'        => '',
-            'message'          => '',
+        $rawResponse = $this->restClient->post('/api/request/do.json', ['form_params' => [
+            'vendor_token' => $this->configuration['vendorToken'],
+            'user_token'   => $this->configuration['userToken'],
+            'recipient'    => $paymentRequest->getRecipient(),
+            'message'      => $paymentRequest->getMessage(),
+            'amount'       => $paymentRequest->getAmount(),
+            'currency'     => $paymentRequest->getCurrency(),
+            'type'         => $paymentRequest->getType(),
         ]]);
 
-        return $this->handleResponse($response);
+        $response = $this->handleResponse($rawResponse);
+
+        if (!isset($response['error'])) {
+            throw new \RuntimeException('Unknown Lydia API error');
+        } elseif ($response['error'] != self::REQUEST_OK) {
+            throw new LydiaApiRequestException($response['message'], $response['error']);
+        }
+
+        $paymentRequest
+            ->setRequestId($response['request_id'])
+            ->setRequestUuid($response['request_uuid'])
+            ->setMobileUrl($response['mobile_url'])
+            ->setMessage($response['message'])
+        ;
+    }
+
+    /**
+     * @param PaymentRequest $paymentRequest
+     * @throws LydiaApiRequestException
+     */
+    public function getPaymentStatus(PaymentRequest $paymentRequest)
+    {
+        $rawResponse = $this->restClient->post('/api/request/state.json', ['form_params' => [
+            'vendor_token' => $this->configuration['vendorToken'],
+            'request_uuid'    => $paymentRequest->getRequestUuid(),
+        ]]);
+
+        $response = $this->handleResponse($rawResponse);
+
+        if (!isset($response['state'])) {
+            throw new \RuntimeException('Unknown Lydia API error');
+        } elseif (isset($response['error']) && $response['error'] != self::REQUEST_OK) {
+            throw new LydiaApiRequestException($response['message'], $response['error']);
+        }
+
+        $paymentRequest->setStatus($response['state']);
     }
 
     /**
