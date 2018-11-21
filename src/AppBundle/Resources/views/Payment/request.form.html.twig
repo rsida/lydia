@@ -1,0 +1,30 @@
+<h1>Payment Request</h1>
+
+{{ form_start(form, {'attr': {'class': 'ajax-form'}}) }}
+
+<fieldset>
+
+    {{ form_widget(form.firstName, {'attr': {
+        'placeholder': 'Firstname',
+        'class': 'form-field',
+        'data-errors': form.firstName.vars.errors | formErrorsToJson
+    }}) }}
+
+    {{ form_widget(form.lastName, {'attr': {
+        'placeholder': 'Lastname',
+        'class': 'form-field',
+        'data-errors': form.lastName.vars.errors | formErrorsToJson
+    }}) }}
+
+    {{ form_widget(form.recipient, {'attr': {
+        'placeholder': 'Email',
+        'class': 'form-field',
+        'data-errors': form.recipient.vars.errors | formErrorsToJson
+    }}) }}
+</fieldset>
+
+<fieldset>
+    {{ form_widget(form.submit) }}
+</fieldset>
+
+{{ form_end(form) }}

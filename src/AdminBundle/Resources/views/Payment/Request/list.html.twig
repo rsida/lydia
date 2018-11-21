@@ -1,0 +1,38 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block content %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Payment request</h1>
+        </div>
+
+        <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Mobile Url</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for paymentRequest in paymentRequests %}
+            <tr>
+                <th scope="row">{{ paymentRequest.id }}</th>
+                <td>{{ paymentRequest.firstName }}</td>
+                <td>{{ paymentRequest.lastName }}</td>
+                <td>{{ paymentRequest.recipient }}</td>
+                <td>{{ paymentRequest.amount }}</td>
+                <td>{{ paymentRequest.mobileUrl }}</td>
+                <td>{{ paymentRequest.createdAt | date("d/m/Y H:i:s") }}</td>
+                <td>{{ paymentRequest | paymentCurrentStatus | paymentStatusLabel }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - Payment request{% endblock %}
+
+{% block content %}
+
+    <div class="layer square-40">
+        <section class="left-side-form form background-layout-blue">
+
+            {% include 'AppBundle:Payment:request.form.html.twig' with {'form': form} %}
+
+        </section>
+
+        <section>
+
+            <header>
+                <img src="{{ asset('img/logo-lydia.png') }}" class="logo"/>
+            </header>
+
+            <p>
+                After submitting the form, you will receive a payment request.
+            </p>
+
+        </section>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('js/form.js') }}"></script>
+{% endblock %}
